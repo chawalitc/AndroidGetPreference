@@ -23,4 +23,10 @@
         android:id="@+id/btnGetPref"
         android:text="Get Data Preference"/>
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnGetRealmData"
+        android:text="Get Data from Realm database"/>
+
 </android.support.constraint.ConstraintLayout>

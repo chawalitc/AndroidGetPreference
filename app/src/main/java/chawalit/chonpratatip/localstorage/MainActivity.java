@@ -8,6 +8,9 @@ import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import chawalit.chonpratatip.localstorage.model.User;
+import io.realm.Realm;
+import io.realm.RealmResults;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -29,12 +32,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        SharedPreferences pref = getApplicationContext().getSharedPreferences("settings",MODE_PRIVATE);
-        SharedPreferences.Editor editor = pref.edit();
-
-        editor.putString("display-name","Chawalit Chonpratatip");
-        editor.putBoolean("safemode",true);
-        editor.apply();
     }
 
     @OnClick(R.id.btnGetPref)
@@ -43,6 +40,18 @@ public class MainActivity extends AppCompatActivity {
         this.displayName = pref.getString("display-name","");
         this.tvShowPreferenc.setText(this.displayName);
 
+    }
+
+    @OnClick(R.id.btnGetRealmData)
+    public void showRealmData(){
+        Realm realm = Realm.getDefaultInstance();
+        realm.executeTransaction(new Realm.Transaction() {
+            @Override
+            public void execute(Realm realm) {
+                User user = realm.where(User.class).findFirst();
+                tvShowPreferenc.setText(user.getFirstName()+" "+user.getLastName());
+            }
+        });
     }
 
 }
