@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void execute(Realm realm) {
                 User user = realm.where(User.class).findFirst();
-                tvShowPreferenc.setText(user.getFirstName()+" "+user.getLastName());
+                tvShowPreferenc.setText(user.getFirstName()+" "+user.getLastName()+" Realm");
             }
         });
     }
