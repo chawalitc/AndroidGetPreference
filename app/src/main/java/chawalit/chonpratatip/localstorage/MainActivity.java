@@ -5,6 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
 
+import java.util.Observable;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -49,6 +51,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void execute(Realm realm) {
                 User user = realm.where(User.class).findFirst();
+//                Observable<RealmResults<User>> users = realm.where(User.class).findAll();
+//                Subscription
                 tvShowPreferenc.setText(user.getFirstName()+" "+user.getLastName()+" Realm");
             }
         });
